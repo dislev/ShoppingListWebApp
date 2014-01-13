@@ -2,14 +2,46 @@
 <html>
     <head>
    	    <meta charset="UTF-8" />
-        <title>Huckle Buckle Beanstalk</title>
+        <title>Shopping List</title>
+        <link rel="stylesheet" type="text/css" href="reset.css"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" src="app.js"></script>
     </head>
     <body>
-    	
+        <div id='allContents'>
+        	<div id='header'>
+        		<h1>Shopping List</h1>
+        	</div>
+        	<div id='content'>
+        		<div id='listControl'>
+        		    <form id='addToList'>
+        			    <input id='textBox' type='text' placeholder='Enter item name here'/><br>
+        			    <input id='prioritySelect' type='checkbox'>priority?<br>
+        			    <input type="submit" value="Submit">
+        		    </form>
+        		    <div id='sorting'>
+        		        <div id='sortCategories'>
+            		        <input id='alpha' type="radio" name="order" value="alpha">Alphabetic
+            		        <input id='priority' type="radio" name="order" value="priority">Priority
+            		        <input id='timeCreated' type="radio" name="order" value="timeCreated">Time
+        		        </div>
+        		        <select id='sortOrder'>
+                            <option value="desc">Descending</option>
+                            <option value="asc">Ascending</option>
+                        </select>
+        		        <input type='button' id='sortButton' value='Sort By Selected'>
+        		    </div>
+        		    <input type='button' id='removeSelected' value='Remove Selected'>
+        		</div>
+        		<div id='trash'>
+        			<h2>Drag item to remove</h2>
+        		</div>
+        	</div>
+	   </div>
+       <div id='itemList'>
+       </div>
     </body>
 </html>
    

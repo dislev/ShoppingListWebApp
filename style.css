@@ -1,0 +1,69 @@
+#trash{
+	background:grey;
+	height: 100px;
+	margin: 20px 20%;
+	border-radius: 10px;
+}
+
+#trash.ui-state-hover{
+	background:teal;
+	height: 100px;
+	margin: 20px 20%;
+	border: 1px solid;
+	border-radius: 10px;
+}
+
+.items{
+	width: 70%;
+	margin: 20px auto;
+	padding: 10px;
+	border-radius: 20px;
+	box-shadow: 0 0 5px #527483;
+	position: relative;
+    background:white;
+}
+
+.items *{
+	display:inline-block;
+	font-weight:bold;
+	padding-right:30px;
+}
+
+#header{
+    font-weight: bold;
+    font-size:40px;
+    padding-bottom:20px;
+}
+
+#addToList{
+    padding:20px 0px 20px 0px;
+    border: 1px solid;
+    border-radius:20px;
+    margin: 20px 35%;
+}
+
+#sortCategories{
+    padding:10px 0px 0px 10px;
+}
+
+#sorting{
+    padding:0px 20px 20px 20px;
+    border: 1px solid;
+    border-radius:10px;
+    margin: 20px 35%;
+}
+
+#allContents{
+    width: 70%;
+    margin: 20px auto;
+    background:white;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px #527483;
+}
+
+body{
+    background:teal;
+}
+
+
