@@ -39,8 +39,6 @@ $(document).ready(function(){
 		$('#textBox').val('');
 	});
 	
-	ItemBindToEditListItemAction();
-	
 	function AddListItem(){
 		
 		var isPriority;
