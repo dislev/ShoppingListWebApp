@@ -1,7 +1,5 @@
 $(document).ready(function(){
 	
-	$('.itemEditBox').hide();
-	
 	$('#trash').droppable({
 		accept: '.items',
 		hoverClass: "ui-state-hover",
@@ -39,6 +37,34 @@ $(document).ready(function(){
 		$('#textBox').val('');
 	});
 	
+	$("#itemList").delegate('.name', // The child element to bind to
+                               'dblclick', // The event we want to bind
+                               function() { // The handler
+            
+            $('.itemEditBox').hide();
+                                
+           //erase previously inputted name for list
+            $(this).text('');
+            
+            //target the next element which is the hidden text input box show and change its margin
+            $(this).next().toggle();
+            $(this).next().css({'margin-left':'-30px'});
+            
+            //on keypress = 'enter', the previous node (class='name') becomes the input value and hide text input felement
+            $(this).next().keypress(function(e){
+                if(e.which == 13){
+                    $(this).prev().text($(this).val());
+                    $(this).hide();
+                }
+            });
+            
+            //when input field is not in focus, the previous node (class='name') becomes the input value and hide text input felement
+            $(this).next().blur(function(){
+                $(this).prev().text($(this).val());
+                $(this).hide();
+            });
+    });
+	
 	function AddListItem(){
 		
 		var isPriority;
@@ -59,12 +85,10 @@ $(document).ready(function(){
 		$('#itemList').append('<ul class="items">'+
     							    '<input type="checkbox">'+
     							    '<li class="name">'+ itemName + '</li>'+
-    							    '<input class="itemEditBox"></input>'+
+    							    '<input class="itemEditBox" style="display:none;"></input>'+
     							    '<li class="priority">Priority: '+ isPriority + '</li>'+
     							    '<li class="dateCreated">Created: '+ date.toLocaleTimeString("en-us", options) +'</li>'+
     							    '</ul>');
-    							    
-	   ItemBindToEditListItemAction();
 	}
 	
 	$('#sortButton').click(function(){
@@ -123,36 +147,6 @@ $(document).ready(function(){
 	    		return $(a).context.children[3].innerHTML.toLowerCase() < $(b).context.children[3].innerHTML.toLowerCase();
 			}).appendTo('#itemList'); 
 		}
-	}
-	
-	function ItemBindToEditListItemAction(){
-	    
-	    $('.itemEditBox').hide();
-	    
-	    $('.name').dblclick(function(){
-            var temp = null;
-            
-            //erase previously inputted name for list
-            $(this).text('');
-            
-            //target the next element which is the hidden text input box show and change its margin
-            $(this).next().show();
-            $(this).next().css({'margin-left':'-30px'});
-            
-            //on keypress = 'enter', the previous node (class='name') becomes the input value and hide text input felement
-            $(this).next().keypress(function(e){
-                if(e.which == 13){
-                    $(this).prev().text($(this).val());
-                    $(this).hide();
-                }
-            });
-            
-            //when input field is not in focus, the previous node (class='name') becomes the input value and hide text input felement
-            $(this).next().blur(function(){
-                $(this).prev().text($(this).val());
-                $(this).hide();
-            });
-        });
 	}
 	
 });
