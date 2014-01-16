@@ -18,7 +18,12 @@
         		<div id='listControl'>
         		    <form id='addToList'>
         			    <input id='textBox' type='text' placeholder='Enter item name here'/><br>
-        			    <input id='prioritySelect' type='checkbox'>priority?<br>
+        			    <span>Priotiry?</span>
+        			    <select id='prioritySelect'>
+                              <option value='3'>Low</option>
+                              <option value='2'>Med</option>
+                              <option value='1'>High</option>
+                        </select><br>
         			    <input type="submit" value="Submit">
         		    </form>
         		    <div id='sorting'>
@@ -36,8 +41,9 @@
         		    <input type='button' id='removeSelected' value='Remove Selected'>
         		</div>
         		<div id='trash'>
-        			<h2>Drag item to remove</h2>
+        			<h2>Drag Item to Remove</h2>
         		</div>
+        		<p>Double Click on Item Title to Change Name</p>
         	</div>
 	   </div>
        <div id='itemList'>
