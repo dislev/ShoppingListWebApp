@@ -23,7 +23,7 @@ $(document).ready(function(){
 	    
 	    var listName = $('#textBox').val();
 	    
-		if(listName != '' || listName != null){
+		if(listName != ''){
 			
 			AddListItem(listName,e);
 			
