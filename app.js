@@ -44,29 +44,29 @@ $(document).ready(function(){
                                'dblclick', // The event we want to bind
                                function() { // The handler
                    
-            var prevItemName;
-            var nextItemName;     
+            var itemName;   
             
             if($(this).text() != '' || $(this).text() != null){
-                prevItemName = $(this).text();
+                itemName = $(this).text();
             }
-            
-            //target the next element whichis the hidden text input box show and change its margin
-            $(this).next().show();
-            $(this).next().find('.itemEditBox').attr('placeholder', prevItemName);
-            $(this).next().css({'margin-left':'-30px'});
             
             //erase previously inputted name for list
             $(this).text('');
+            
+            //target the next element whichis the hidden text input box show and change its margin
+            $(this).next().show();
+            $(this).next().find('.itemEditBox').attr('placeholder', itemName);
+            $(this).next().find('.itemEditBox').val('');
+            $(this).next().css({'margin-left':'-30px'});
             
             //on keypress = 'enter', the previous node (class='name') becomes the input value and hide text input felement
             $(this).next().keypress(function(e){
                 if(e.which == 13){
                     
-                    nextItemName = $(this).find('.itemEditBox').val();
+                    itemName = $(this).find('.itemEditBox').val();
                     
-                    if(nextItemName != ''){
-                        $(this).prev().text(nextItemName);
+                    if(itemName != ''){
+                        $(this).prev().text(itemName);
                         $(this).hide();
                     }
                     else{
@@ -77,8 +77,7 @@ $(document).ready(function(){
             
             //when input field is not in focus, the previous node (class='name') becomes the input value and hide text input felement
             $(this).next().find('.itemEditBox').blur(function(){
-
-                $(this).parent().prev().text(prevItemName);
+                $(this).parent().prev().text(itemName);
                 $(this).parent().hide();
             });
         });
