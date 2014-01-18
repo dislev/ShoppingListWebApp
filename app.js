@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     $('#removeSelected').click(function(){
         if($('.items input').is(':checked')){
-            $('.items input:checked').parent().remove();
+            $('.items input:checked').closest('ul').remove();
         }
     });
     
@@ -43,26 +43,30 @@ $(document).ready(function(){
 	$("#itemList").delegate('.name', // The child element to bind to
                                'dblclick', // The event we want to bind
                                function() { // The handler
-                                   
-            var prevItemName = $(this).text();
+                   
+            var prevItemName;
             var nextItemName;     
-                        
-            //erase previously inputted name for list
-            $(this).text('');
+            
+            if($(this).text() != '' || $(this).text() != null){
+                prevItemName = $(this).text();
+            }
             
             //target the next element whichis the hidden text input box show and change its margin
             $(this).next().show();
             $(this).next().find('.itemEditBox').attr('placeholder', prevItemName);
-            $(this).next().find('.itemEditBox').text('');
             $(this).next().css({'margin-left':'-30px'});
+            
+            //erase previously inputted name for list
+            $(this).text('');
             
             //on keypress = 'enter', the previous node (class='name') becomes the input value and hide text input felement
             $(this).next().keypress(function(e){
                 if(e.which == 13){
+                    
                     nextItemName = $(this).find('.itemEditBox').val();
                     
-                    if(nextItemName != '' && nextItemName != null){
-                        $(this).prev().text($(this).find('.itemEditBox').val());
+                    if(nextItemName != ''){
+                        $(this).prev().text(nextItemName);
                         $(this).hide();
                     }
                     else{
@@ -73,13 +77,9 @@ $(document).ready(function(){
             
             //when input field is not in focus, the previous node (class='name') becomes the input value and hide text input felement
             $(this).next().find('.itemEditBox').blur(function(){
-                
-                nextItemName = $(this).val();
-                
-                if(nextItemName == '' || nextItemName == null){
-                    $(this).parent().prev().text(prevItemName);
-                    $(this).hide();
-                }
+
+                $(this).parent().prev().text(prevItemName);
+                $(this).parent().hide();
             });
         });
         
